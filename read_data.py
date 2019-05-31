@@ -20,16 +20,29 @@ trig = 9
 #     plt.plot(ssvep[i])
 # plt.show()
 print(ssvep[trig])
-l = list()
+head = list()
+end = list()
 count = 0
-for index in range(0, len(ssvep[trig]-1)):
-    if ssvep[trig][index] == 1: # and ssvep[trig][index-1] == 0:
-        l.append(index)
-        if ssvep[trig][index+1] == 0:
-            print(len(l))
-            l = list()
-            count += 1
-            print(count)
+for index in range(0, len(ssvep[trig])-1):
+    if ssvep[trig][index] == 0 and ssvep[trig][index+1] == 1:
+        head.append(index+1)
+    elif ssvep[trig][index] == 1 and ssvep[trig][index+1] == 0:
+        end.append(index)
+
+for i in range(len(head)):
+    print(head[i] - end[i])
+
+
+
+
+
+    # if ssvep[trig][index] == 1: # and ssvep[trig][index-1] == 0:
+    #     l.append(index)
+    #     if ssvep[trig][index+1] == 0:
+    #         print(len(l))
+    #         l = list()
+    #         count += 1
+    #         print(count)
 
 
 
