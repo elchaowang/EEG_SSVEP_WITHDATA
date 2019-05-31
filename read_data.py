@@ -19,33 +19,29 @@ def loadPersonalData(filename):
         if ssvep[trig][index] == 0 and ssvep[trig][index+1] == 1:
             head.append(index+1)
         elif ssvep[trig][index] == 1 and ssvep[trig][index+1] == 0:
-            end.append(index+1)
+            end.append(index-1)
 
 ######### triggle the eeg signals into 24 trial 8 chs * 1882 samples ######
     test_x_signal = list()
     for i in range(len(head)):
         ch_x_signals = list()
         for x in range(len(eeg_signal)):
-            ch_x_signals.append(eeg_signal[x][head[i]:end[i]])
+            tmp = eeg_signal[x][head[i]:end[i]]
+            tmp = np.transpose(np.array([tmp]))
+            ch_x_signals.append(tmp)
         test_x_signal.append(ch_x_signals)
     test_x_signal = np.array(test_x_signal)
+    print(test_x_signal.shape)
     return test_x_signal
 
 
-test1_data = loadPersonalData('mohamed_TEST1')
-test2_data = loadPersonalData('mohamed_TEST2')
-test3_data = loadPersonalData('Mohamed_Test1_SSVEP')
-
-data = np.vstack((test1_data, test2_data))
-data = np.vstack((data, test3_data))
-
-print(data.shape)
-
-plt.plot(data[0][0])
-plt.show()
-
-
-
+def load_all_data():
+    test1_data = loadPersonalData('mohamed_TEST1')
+    test2_data = loadPersonalData('mohamed_TEST2')
+    test3_data = loadPersonalData('Mohamed_Test1_SSVEP')
+    test4_data = loadPersonalData('Mohamed_feedback1_SSVEP')
+    data = np.vstack((test1_data, test2_data, test3_data, test4_data))
+    return data
 
 
 
