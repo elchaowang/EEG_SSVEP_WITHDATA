@@ -16,8 +16,8 @@ def loadPersonalData(filename):
 ssvep = loadPersonalData('Mohamed_TEST1')
 
 trig = 9
-# for i in range(0, 11):
-#     plt.plot(ssvep[i])
+# for i in range(1, 9):
+#     plt.plot(ssvep[i]+i*250)
 # plt.show()
 print(ssvep[trig])
 head = list()
@@ -27,10 +27,17 @@ for index in range(0, len(ssvep[trig])-1):
     if ssvep[trig][index] == 0 and ssvep[trig][index+1] == 1:
         head.append(index+1)
     elif ssvep[trig][index] == 1 and ssvep[trig][index+1] == 0:
-        end.append(index)
+        end.append(index+1)
 
-for i in range(len(head)):
-    print(head[i] - end[i])
+chx_signal = ssvep[1:9]
+
+for i in range(len(chx_signal)):
+    plt.plot(chx_signal[i]+i*250)
+plt.show()
+
+
+# for i in range(len(head)):
+#     chx_signal.append(ssvep[])
 
 
 
