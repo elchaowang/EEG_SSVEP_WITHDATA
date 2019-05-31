@@ -98,7 +98,6 @@ checkpoint = tf.train.Checkpoint(generator_optimizer=generator_optimizer,
                                  generator=generator,
                                  discriminator=discriminator)
 
-
 EPOCHS = 50
 noise_dim = 100
 num_examples_to_generate = 16
@@ -145,7 +144,7 @@ def train(dataset, epochs):
     if (epoch + 1) % 15 == 0:
       checkpoint.save(file_prefix = checkpoint_prefix)
 
-    print ('Time for epoch {} is {} sec'.format(epoch + 1, time.time()-start))
+    print('Time for epoch {} is {} sec'.format(epoch + 1, time.time()-start))
 
   # Generate after the final epoch
   display.clear_output(wait=True)
